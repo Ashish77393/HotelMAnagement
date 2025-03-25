@@ -1,0 +1,180 @@
+{%include 'Header.html'%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Features</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url("https://images.squarespace-cdn.com/content/v1/57125c2c2b8dde54a34b537f/1598519777811-FO5ABYWP3EDDIL14MNMT/ke17ZwdGBToddI8pDm48kNvT88LknE-K9M4pGNO0Iqd7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1USOFn4xF8vTWDNAUBm5ducQhX-V3oVjSmr829Rco4W2Uo49ZdOtO_QXox0_W7i2zEA/stella_island_luxury_resort_spa_crete_itravelling_4.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        text-align: center;
+      }
+      .container {
+        max-width: 1100px;
+        margin: 50px auto;
+        background: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+        font-size: 2.5em;
+      }
+      .feature-section {
+        margin-top: 30px;
+      }
+      .feature-section h2 {
+        background: #0056b3;
+        color: white;
+        padding: 15px;
+        border-radius: 5px;
+        font-size: 1.8em;
+      }
+      .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin: 20px 0;
+        padding: 15px;
+        border-bottom: 2px solid #ddd;
+      }
+      .feature-item:last-child {
+        border-bottom: none;
+      }
+      .feature-item img {
+        width: 100px;
+        height: 100px;
+        border-radius: 10px;
+      }
+      .feature-item strong {
+        display: block;
+        color: #333;
+        font-size: 1.4em;
+      }
+      .feature-item p {
+        margin: 5px 0 0;
+        color: #555;
+        font-size: 1.1em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Our Hotel Features</h1>
+
+      <div class="feature-section">
+        <h2>Luxury Accommodations</h2>
+        <div class="feature-item">
+          <img
+            src="https://tse2.mm.bing.net/th?id=OIP.KKR_A4truRoiuJjpG7sofAHaE8&pid=Api&P=0&h=180"
+            alt="Room Image"
+          />
+          <div>
+            <strong>Spacious Rooms & Suites</strong>
+            <p>
+              Enjoy elegantly designed rooms with modern amenities, offering
+              comfort and style.
+            </p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <img
+            src="https://tse3.mm.bing.net/th?id=OIP.0SvlDI89F0Fh6BxZD0_ilAHaHa&pid=Api&P=0&h=180"
+            alt="Balcony View"
+          />
+          <div>
+            <strong>Private Balconies</strong>
+            <p>
+              Relax and take in breathtaking views from private balconies
+              available in select rooms.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-section">
+        <h2>World-Class Dining</h2>
+        <div class="feature-item">
+          <img
+            src="https://tse1.mm.bing.net/th?id=OIP.bSeG5S4nbp1cXgNNeqp03gHaE8&pid=Api&P=0&h=180"
+            alt="Fine Dining"
+          />
+          <div>
+            <strong>Fine Dining Restaurant</strong>
+            <p>
+              Savor gourmet cuisine crafted by top chefs using fresh, locally
+              sourced ingredients.
+            </p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <img
+            src="https://tse4.mm.bing.net/th?id=OIP.DyFnJf3EVa4exjHW_WjNCwHaFT&pid=Api&P=0&h=180"
+            alt="Room Service"
+          />
+          <div>
+            <strong>24/7 Room Service</strong>
+            <p>
+              Delight in delicious meals and snacks delivered straight to your
+              room anytime.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-section">
+        <h2>Premium Amenities</h2>
+        <div class="feature-item">
+          <img
+            src="https://tse3.mm.bing.net/th?id=OIP.vH1aju9ohBn4cayR7I-5GgHaHa&pid=Api&P=0&h=180"
+            alt="Swimming Pool"
+          />
+          <div>
+            <strong>Swimming Pool & Spa</strong>
+            <p>
+              Unwind in our luxurious spa or take a refreshing dip in our
+              infinity pool.
+            </p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <img
+            src="https://tse3.mm.bing.net/th?id=OIP.HxAUQ5oPOEcuorycJCGpcQHaFc&pid=Api&P=0&h=180"
+            alt="Gym"
+          />
+          <div>
+            <strong>State-of-the-Art Gym</strong>
+            <p>
+              Stay fit with our fully equipped fitness center and personal
+              training services.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-section">
+        <h2>Exclusive Services</h2>
+
+        <div class="feature-item">
+          <img src="event.jpg" alt="Event Space" />
+          <div>
+            <strong>Business & Event Spaces</strong>
+            <p>
+              Host meetings, conferences, and events in our well-equipped
+              venues.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+{%include 'Footer.html'%}

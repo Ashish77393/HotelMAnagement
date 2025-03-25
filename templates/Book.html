@@ -1,0 +1,90 @@
+{%load static%} {%include 'Header.html'%}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luxury Stay</title>
+  </head>
+  <body>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Hotel Booking</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("https://images.squarespace-cdn.com/content/v1/57125c2c2b8dde54a34b537f/1598519777811-FO5ABYWP3EDDIL14MNMT/ke17ZwdGBToddI8pDm48kNvT88LknE-K9M4pGNO0Iqd7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1USOFn4xF8vTWDNAUBm5ducQhX-V3oVjSmr829Rco4W2Uo49ZdOtO_QXox0_W7i2zEA/stella_island_luxury_resort_spa_crete_itravelling_4.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            text-align: center;
+          }
+          .container {
+            width: 50%;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          }
+          input,
+          select,
+          button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+          }
+          button {
+            background: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+          }
+          button:hover {
+            background: #218838;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <h2>Hotel Booking Form</h2>
+          <form action="/BookNow/" method="">
+            {% csrf_token %}
+            <label for="checkin">Check-in Date:</label>
+            <input type="date" id="checkin" name="checkin" required />
+
+            <label for="checkout">Check-out Date:</label>
+            <input type="date" id="checkout" name="checkout" required />
+
+            <label for="guests">Number of Guests:</label>
+            <select id="guests" name="numberofpeople">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+
+            <button type="submit">
+              <a
+                style="
+                  text-decoration: none;
+                  color: antiquewhite;
+                  font-weight: bolder;
+                "
+                href="/Payment"
+                >Book Now</a
+              >
+            </button>
+          </form>
+        </div>
+      </body>
+    </html>
+  </body>
+</html>
