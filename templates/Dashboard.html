@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{% static '' %}" />
     <title>Luxury Stay</title>
   </head>
-  <body">
+  <body>
     <div
       id="carouselExampleCaptions"
       class="carousel slide"
@@ -35,8 +35,10 @@
             alt="..."
           />
           <div class="carousel-caption d-none d-md-block">
-            <h5>{{ c.heading }}</h5>
-            <p>{{ c.description }}</p>
+            <h5 style="font-size: 50px; color: rgb(254, 235, 22)">
+              {{ c.heading }}
+            </h5>
+            <p style="font-size: 35px">{{ c.description }}</p>
           </div>
         </div>
         {% endfor %}
@@ -65,102 +67,102 @@
     <hr />
 
     <style>
-      .container {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 20px;
-          padding: 20px;
+      .container-fluid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        gap: 20px;
+        padding: 20px;
+        background-color: black;
       }
-    
+
       .developer-card {
-          width: 300px; /* Adjust based on your design */
-          display: flex;
-          flex-direction: column;
-          border: 1px solid #ddd;
-          border-radius: 10px;
-          overflow: hidden;
-          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-          transition: transform 0.3s ease-in-out;
+        width: 300px; /* Adjust based on your design */
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
       }
-    
+
       .developer-card:hover {
-          transform: translateY(-5px);
+        transform: translateY(-5px);
       }
-    
+
       .developer-card img {
-          width: 100%;
-          height: 200px;
-          object-fit: cover;
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
       }
-    
+
       .card-body {
-          flex-grow: 1;
-          padding: 15px;
-          display: flex;
-          flex-direction: column;
+        flex-grow: 1;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
       }
-    
+
       .card-title {
-          font-size: 18px;
-          font-weight: bold;
-          margin-bottom: 5px;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 5px;
       }
-    
+
       .card-price {
-          font-size: 16px;
-          font-weight: bold;
-          color: #28a745;
+        font-size: 16px;
+        font-weight: bold;
+        color: black;
       }
-    
+
       .card-rating {
-          font-size: 14px;
-          color: #f39c12;
-          margin-left: 10px;
+        font-size: 18px;
+        color: black;
+        font-weight: bold;
+        margin-left: 10px;
       }
-    
+
       .card-facility {
-          font-size: 14px;
-          color: #555;
-          margin-top: 10px;
+        font-size: 18px;
+        color: #555;
+        margin-top: 10px;
       }
-    
+
       .bottom {
-          margin-top: auto;
-          text-align: center;
-          padding: 10px;
+        margin-top: auto;
+        text-align: center;
+        padding: 10px;
       }
-    
+
       .bottom .btn {
-          width: 100%;
-          font-size: 16px;
-          font-weight: bold;
+        width: 100%;
+        font-size: 16px;
+        font-weight: bold;
       }
     </style>
-    
-    <div class="container">
-        {% for h in hotel %}
-        <div class="card developer-card">
-            <img src="/media/{{ h.image }}" alt="Hotel Image">
-            <div class="card-body">
-                <p class="card-title">{{ h.header }}</p>
-                <div>
-                    <span class="card-price">$ {{ h.price }}</span>
-                    <span class="card-rating">⭐ {{ h.rating }}/5</span>
-                </div>
-                <p class="card-facility"><strong>Facilities:</strong> {{ h.facility }}</p>
-                <div class="bottom">
-                    <a href="/BookNow" style="text-decoration: none;">
-                        <button class="btn btn-primary">Book Now</button>
-                    </a>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-    
 
-    
+    <div class="container-fluid">
+      {% for h in hotel %}
+      <div class="card developer-card">
+        <img src="/media/{{ h.image }}" alt="Hotel Image" />
+        <div class="card-body">
+          <p class="card-title">{{ h.header }}</p>
+          <div>
+            <span class="card-price">₹ {{ h.price }}</span>
+            <span class="card-rating">⭐ {{ h.rating }}/5</span>
+          </div>
+          <p class="card-facility">{{ h.des }}</p>
+          <div class="bottom">
+            <a href="/BookNow" style="text-decoration: none">
+              <button class="btn btn-dark">Book Now</button>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
   </body>
 </html>
 {%include 'Footer.html'%}
