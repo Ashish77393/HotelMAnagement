@@ -63,20 +63,7 @@ def BookNow(request):
     return render(request,"Book.html",{})
 def Payment(request):
     return render(request,'Payment.html',{})
-def About(request):
-    return render(request,'About.html')
-def Contact(request):
-    if request.method=="POST":
-        name=request.POST.get("name")
-        email=request.POST.get("email")
-        message=request.POST.get('message')
-        c=contact()
-        c.name=name
-        c.email=email
-        c.message=message
-        c.save()
-    return render(request,'Contact-Us.html',{})
+
+
 def Features(request):
     return render(request,'Features.html')
-def Services(request):
-    return render(request,'Services.html')

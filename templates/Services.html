@@ -29,51 +29,23 @@
     <div class="container mt-5">
       <h2 class="text-center mb-4">Our Services</h2>
       <div class="row">
+        {% for c in service%}
         <div class="col-md-4">
           <div class="card service-card shadow-sm">
             <img
-              src="https://tse4.mm.bing.net/th?id=OIP.PoEFsvdyu_RRemGFlHt7ZwHaE8&pid=Api&P=0&h=180"
+              src="/media/{{ c.image }}"
               class="card-img-top"
               alt="Room Service"
             />
             <div class="card-body">
-              <h5 class="card-title">Luxury Rooms</h5>
-              <p class="card-text">
-                Comfortable and well-furnished rooms with modern amenities.
-              </p>
+              <h5 class="card-title">{{c.header}}</h5>
+              <p class="card-text">{{c.des}}</p>
             </div>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="card service-card shadow-sm">
-            <img
-              src="https://tse3.mm.bing.net/th?id=OIP.s482h9nOcdPkWZazeRHZOwHaFo&pid=Api&P=0&h=180"
-              class="card-img-top"
-              alt="Dining"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Fine Dining</h5>
-              <p class="card-text">
-                Enjoy gourmet meals crafted by top chefs in a luxurious setting.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card service-card shadow-sm">
-            <img
-              src="https://tse3.mm.bing.net/th?id=OIP.gCSEgYqi7IDLjDtW_KAWuwHaE7&pid=Api&P=0&h=180"
-              class="card-img-top"
-              alt="Spa"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Spa & Wellness</h5>
-              <p class="card-text">
-                Relax and rejuvenate with our premium spa and wellness
-                treatments.
-              </p>
-            </div>
-          </div>
+        {%endfor%}
+   
+       
         </div>
       </div>
     </div>

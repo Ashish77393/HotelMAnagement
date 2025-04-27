@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'Carasoul',
     'HotelList',
     'contact',
-    
+    'service',
+    'About',
     
 ]
 

@@ -17,6 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import *;
+from service.views import *
+from contact.views import *
+from About.views import *
 from django.conf.urls.static import static
 from django.conf import settings
 urlpatterns = [
