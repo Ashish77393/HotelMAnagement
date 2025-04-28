@@ -12,4 +12,4 @@ class contactPersonalDetails(models.Model):
     mess=models.CharField(max_length=200)
     name=models.CharField(max_length=100)
     email=models.EmailField(max_length=50)
-    phone=models.IntegerField(max_length=12)
+    phone=models.IntegerField()

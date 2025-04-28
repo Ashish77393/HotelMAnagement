@@ -65,5 +65,4 @@ def Payment(request):
     return render(request,'Payment.html',{})
 
 
-def Features(request):
-    return render(request,'Features.html')
+
