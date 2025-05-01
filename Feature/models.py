@@ -4,9 +4,4 @@ class Featuresdata(models.Model):
     header=models.CharField(max_length=50)
     des=models.CharField(max_length=200)
 
-    
-
-   
-
-    
 # Create your models here.
