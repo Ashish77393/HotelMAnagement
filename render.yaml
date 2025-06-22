@@ -2,6 +2,7 @@ services:
   - type: web
     name: django-backend
     env: python
+    pythonVersion: 3.12.3
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn projectname.wsgi:application --bind 0.0.0.0:8000
     envVars:
