@@ -58,13 +58,13 @@
           <form action="/BookNow/" method="">
             {% csrf_token %}
             <label for="checkin">Check-in Date:</label>
-            <input type="date" id="checkin" name="checkin" required />
+            <input type="date" id="checkin" name="checkin" required="" />
 
             <label for="checkout">Check-out Date:</label>
-            <input type="date" id="checkout" name="checkout" required />
+            <input type="date" id="checkout" name="checkout" required="" />
 
             <label for="guests">Number of Guests:</label>
-            <select id="guests" name="numberofpeople">
+            <select id="guests" name="numberofpeople" required="">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
