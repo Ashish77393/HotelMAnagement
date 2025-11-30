@@ -3,13 +3,13 @@ services:
     name: django-backend
     env: python
     pythonVersion: 3.12.3
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn projectname.wsgi:application --bind 0.0.0.0:8000
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
+    startCommand: gunicorn ProjectAsh.wsgi:application --bind 0.0.0.0:$PORT
     envVars:
       - key: DJANGO_SETTINGS_MODULE
-        value: projectname.settings
+        value: ProjectAsh.settings
       - key: SECRET_KEY
-        value: your-secret-key
+        value: "REPLACE_WITH_SECRET_OR_SET_ON_RENDER"
       - key: DATABASE_URL
         fromDatabase:
           name: your-db-name
