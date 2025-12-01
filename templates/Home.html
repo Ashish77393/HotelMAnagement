@@ -74,6 +74,13 @@
   </head>
 
   <body>
+    {% if messages %}
+    <div style="max-width:400px; margin: 10px auto; text-align:center;">
+      {% for message in messages %}
+        <div style="padding:10px; border-radius:6px; margin-bottom:8px; background:#e6ffea; color:#0b6623; font-weight:600;">{{ message }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
     <div class="card">
       <h2>Login</h2>
       <form method="post" action="/">

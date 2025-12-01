@@ -28,6 +28,7 @@ urlpatterns = [
     path("",home),
     path("signup/",signup),
     path('Dashboard/',Dashboard),
+    path('logout/', logout_view),
     path('BookNow/',BookNow),
     path('Payment/',Payment),
     path('About/',About),

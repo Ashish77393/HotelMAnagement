@@ -61,7 +61,22 @@
           <li><a href="/Contact">Contact</a></li>
         </ul>
       </nav>
-      <a href="#BookNow" class="book-now">Book Now</a>
+      <div style="display:flex; align-items:center; gap:1rem;">
+        {% if request.session.user_name %}
+        <div style="color:#fff; font-weight:bold;">Hello, {{ request.session.user_name }}</div>
+        <a href="/logout/" class="book-now" style="background:#6c757d;">Logout</a>
+        {% else %}
+        <a href="/" class="book-now">Login</a>
+        <a href="/signup/" class="book-now" style="background:#2dce89;">Sign Up</a>
+        {% endif %}
+      </div>
     </header>
+    {% if messages %}
+    <div style="max-width: 1100px; margin: 10px auto; padding: 0 20px;">
+      {% for message in messages %}
+        <div style="padding:10px; border-radius:6px; margin-bottom:8px; background:#f0f8ff; color:#003580; font-weight:600;">{{ message }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
   </body>
 </html>

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.contrib import messages
 from HotelList.models import HotelList,BookHotel
 from Carasoul.models import Carasoul
 from contact.models import contact
@@ -7,7 +8,11 @@ from contact.models import contact
 from django.http import HttpResponse
 from Studentsign.models import Studentsign
 def home(request):
-     if request.method == "POST":
+    # If user is already logged-in, send them to dashboard
+    if request.session.get('user_id') and request.method != 'POST':
+        return redirect('/Dashboard')
+
+    if request.method == "POST":
         password = request.POST.get("password")
         email = request.POST.get("email")
         user = Studentsign.objects.filter(password=password, email=email).first()
@@ -17,6 +22,10 @@ def home(request):
 
         user = Studentsign.objects.filter(email=email, password=password).first()
         if user:
+            # Save user info in session and redirect to dashboard
+            request.session['user_id'] = user.id
+            request.session['user_name'] = user.name
+            messages.success(request, f"Welcome back, {user.name}!")
             return  redirect("/Dashboard") # Change "dashboard" to 
         else:
             # return HttpResponse("<h1>User DOes not exits</h1>")
@@ -35,6 +44,10 @@ def signup(request):
         s.password=password
         s.contact=contact
         s.save()
+        # Auto-login after signup
+        request.session['user_id'] = s.id
+        request.session['user_name'] = s.name
+        messages.success(request, "Signup successful — you are now logged in.")
         return redirect("/")
     return render(request, "SignUpPage.html")
 
@@ -63,6 +76,12 @@ def BookNow(request):
     return render(request,"Book.html",{})
 def Payment(request):
     return render(request,'Payment.html',{})
+
+def logout_view(request):
+    # Clear session and redirect to home
+    request.session.flush()
+    messages.info(request, "You have been logged out.")
+    return redirect("/")
 
 
 
