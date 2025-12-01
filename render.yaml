@@ -2,9 +2,10 @@ services:
   - type: web
     name: django-backend
     env: python
-    # Use a major.minor version so Render can pick a supported patch release.
-    # Using '3.12' prevents failures if Render doesn't support the exact patch version.
-    pythonVersion: 3.12
+    # NOTE: `pythonVersion` is not supported in Render's service schema for some accounts
+    # Remove pythonVersion to avoid schema validation errors. Render will select an appropriate
+    # Python runtime for an `env: python` service, or you can set the language/runtime in the
+    # dashboard if needed.
     buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
     startCommand: gunicorn ProjectAsh.wsgi:application --bind 0.0.0.0:$PORT
     envVars:
