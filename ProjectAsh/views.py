@@ -30,7 +30,7 @@ def home(request):
         else:
             # return HttpResponse("<h1>User DOes not exits</h1>")
             return render(request, "home.html", {"error": "Invalid name or email"})
-     return render(request, "home.html")
+    return render(request, "home.html")
 
 def signup(request):
     if request.method == "POST":
@@ -59,9 +59,23 @@ def signup(request):
         # e.save()
           
 def Dashboard(request):
-    hotel=HotelList.objects.all()
-    carasoul=Carasoul.objects.all()
-    return render(request,"Dashboard.html",{"hotel":hotel,"carasoul":carasoul})
+    hotel = HotelList.objects.all()
+    carasoul = Carasoul.objects.all()
+    # Dashboard stats
+    from HotelList.models import BookHotel
+    total_hotels = hotel.count()
+    total_bookings = BookHotel.objects.count()
+    avg_rating = 0
+    if total_hotels:
+        avg_rating = int(sum([h.rating for h in hotel]) / total_hotels)
+
+    return render(request, "Dashboard.html", {
+        "hotel": hotel,
+        "carasoul": carasoul,
+        "total_hotels": total_hotels,
+        "total_bookings": total_bookings,
+        "avg_rating": avg_rating
+    })
 def BookNow(request):
     if request.method=="POST":
      checkin=request.POST.get('checkin')

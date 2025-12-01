@@ -8,11 +8,35 @@
     <title>Luxury Stay</title>
   </head>
   <body>
-    <div
-      id="carouselExampleCaptions"
-      class="carousel slide"
-      data-bs-ride="carousel"
-    >
+    <div class="container mt-4">
+      <!-- Greeting + quick stats -->
+      <div class="row align-items-center mb-4">
+        <div class="col-md-8">
+          <div class="p-4 bg-white rounded-4 shadow-sm hero-card">
+            <h2 class="mb-1 hero-title">Welcome back{% if request.session.user_name %}, {{ request.session.user_name }}{% endif %}!</h2>
+            <p class="muted mb-0">Here's what's happening with your bookings and recommendations today.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="d-flex gap-2">
+            <div class="p-3 bg-white rounded-3 shadow-sm text-center w-100">
+              <div class="small muted">Hotels</div>
+              <div class="h3 mt-1">{{ total_hotels }}</div>
+            </div>
+            <div class="p-3 bg-white rounded-3 shadow-sm text-center w-100">
+              <div class="small muted">Bookings</div>
+              <div class="h3 mt-1">{{ total_bookings }}</div>
+            </div>
+            <div class="p-3 bg-white rounded-3 shadow-sm text-center w-100">
+              <div class="small muted">Avg Rating</div>
+              <div class="h3 mt-1">{{ avg_rating }}/5</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carousel (recommended stays) -->
+      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
         {% for c in carasoul %}
         <button
@@ -62,6 +86,8 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
+    </div>
+
     </div>
 
     <hr />
@@ -155,14 +181,15 @@
           </div>
           <p class="card-facility">{{ h.des }}</p>
           <div class="bottom">
-            <a href="/BookNow" style="text-decoration: none">
-              <button class="btn btn-dark">Book Now</button>
-            </a>
-          </div>
+              <a href="/BookNow" style="text-decoration: none">
+                <button class="btn btn-dark">Book Now</button>
+              </a>
+            </div>
         </div>
       </div>
       {% endfor %}
     </div>
+    <!-- Suggested hotels and footer included via templates -->
   </body>
 </html>
 {%include 'Footer.html'%}
