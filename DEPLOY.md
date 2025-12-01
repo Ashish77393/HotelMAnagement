@@ -84,6 +84,16 @@ High-level steps (how to build using the repo Dockerfile):
 
 4. Confirm build settings. Vercel will use your Dockerfile for the build. The `entrypoint.sh` in this repo runs `migrate` and `collectstatic` automatically at container start, then starts gunicorn.
 
+Alternative (if your Vercel plan doesn't support Docker builds)
+
+If your Vercel account can't use Docker builds, there's an alternative: Vercel's Python serverless builder requires a single ASGI/Starlette/FastAPI `app` entrypoint. For convenience this repository now contains `app.py` which exposes Django's ASGI application as `app` so Vercel can deploy the Django app in a serverless environment.
+
+Important notes about the serverless approach:
+- Serverless functions may have cold-starts, execution time limits, and may not be suitable for long-running background tasks like migrations — so you should run migrations outside the function (CI or a separate command).
+- Static files should be collected and stored in a persistent object store (S3/GCS) or served from Vercel's static hosting. This repo includes `staticfiles/` handling but you must ensure `python manage.py collectstatic` runs in your deployment process and the assets are served appropriately.
+
+If you prefer this serverless approach, Vercel will use `app.py` automatically if the project is set to the default Python builder (no Dockerfile). Make sure `app.py` is present at the repo root and set environment variables in Vercel. You can also explicitly add a `build` step if needed.
+
 5. After the first deployment, verify app logs and open the service URL.
 
 Notes / caveats:
