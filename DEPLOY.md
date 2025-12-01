@@ -68,27 +68,30 @@ If you'd like, I can create a small helper workflow step to run `python manage.p
 
 ## 7) Deploy to Vercel (using Docker)
 
-This repo now includes a Dockerfile and a `vercel.json` so you can run the full Django app on Vercel using their Docker builder. Vercel supports Docker-based deployments and will build the container using the `@vercel/docker` builder.
+This repo includes a Dockerfile and a `vercel.json` with routing rules. Note: the `@vercel/docker` builder referenced in older examples is not available in all environments. Instead, configure your Vercel project to build directly from the Dockerfile via the Vercel UI.
 
-High-level steps:
+High-level steps (how to build using the repo Dockerfile):
 
 1. In Vercel, create a new project and import this GitHub repository.
-2. Make sure the project uses the `Dockerfile` in the repository (Vercel will detect `vercel.json` and build with `@vercel/docker`).
+2. During import or from Project → Settings → Build & Development Settings, select the repository's `Dockerfile` as the build method. (If you do not see this option, your Vercel plan or team settings may not include Docker builds — contact Vercel or upgrade your plan.)
 3. In Project → Settings → Environment Variables add the same environment variables you would on Render:
+
    - DJANGO_SETTINGS_MODULE = ProjectAsh.settings
    - SECRET_KEY = <your-production-secret>
    - DEBUG = False
    - ALLOWED_HOSTS = hotelmanagement-4-o2yw.onrender.com (or your domain)
    - DATABASE_URL = <your database url> (point to a managed Postgres like Supabase/Render/Railway)
 
-4. Confirm build settings (Vercel will build the Docker image as defined in `Dockerfile`). The container entrypoint will run migrations and collect static files automatically before starting gunicorn.
+4. Confirm build settings. Vercel will use your Dockerfile for the build. The `entrypoint.sh` in this repo runs `migrate` and `collectstatic` automatically at container start, then starts gunicorn.
 
 5. After the first deployment, verify app logs and open the service URL.
 
 Notes / caveats:
+
 - Vercel is optimized for frontends/Serverless functions; running a containerized full Django app is supported but may require a paid plan (check Vercel's compute/plan requirements) and careful consideration of runtime limits.
 - If you'd prefer a simpler, more predictable host for a long-running Django server, Render, Railway or a VPS may be easier — but Vercel works if you want everything under one provider.
 
 If you'd like, I can:
+
 - Complete the Vercel project setup instructions and walk you through environment variables and DB provisioning in your account.
 - Add a small GitHub Action to wait on a successful Vercel deployment and perform any post-deploy tasks (if needed).
