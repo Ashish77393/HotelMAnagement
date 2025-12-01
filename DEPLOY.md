@@ -63,3 +63,32 @@ Render builds the app during deploy using `render.yaml` or the build commands yo
 - Logs on Render (service → logs) are your first stop for errors.
 
 If you'd like, I can create a small helper workflow step to run `python manage.py migrate` on Render automatically after a successful deploy — but it requires careful handling of credentials and when you want it to run.
+
+---
+
+## 7) Deploy to Vercel (using Docker)
+
+This repo now includes a Dockerfile and a `vercel.json` so you can run the full Django app on Vercel using their Docker builder. Vercel supports Docker-based deployments and will build the container using the `@vercel/docker` builder.
+
+High-level steps:
+
+1. In Vercel, create a new project and import this GitHub repository.
+2. Make sure the project uses the `Dockerfile` in the repository (Vercel will detect `vercel.json` and build with `@vercel/docker`).
+3. In Project → Settings → Environment Variables add the same environment variables you would on Render:
+   - DJANGO_SETTINGS_MODULE = ProjectAsh.settings
+   - SECRET_KEY = <your-production-secret>
+   - DEBUG = False
+   - ALLOWED_HOSTS = hotelmanagement-4-o2yw.onrender.com (or your domain)
+   - DATABASE_URL = <your database url> (point to a managed Postgres like Supabase/Render/Railway)
+
+4. Confirm build settings (Vercel will build the Docker image as defined in `Dockerfile`). The container entrypoint will run migrations and collect static files automatically before starting gunicorn.
+
+5. After the first deployment, verify app logs and open the service URL.
+
+Notes / caveats:
+- Vercel is optimized for frontends/Serverless functions; running a containerized full Django app is supported but may require a paid plan (check Vercel's compute/plan requirements) and careful consideration of runtime limits.
+- If you'd prefer a simpler, more predictable host for a long-running Django server, Render, Railway or a VPS may be easier — but Vercel works if you want everything under one provider.
+
+If you'd like, I can:
+- Complete the Vercel project setup instructions and walk you through environment variables and DB provisioning in your account.
+- Add a small GitHub Action to wait on a successful Vercel deployment and perform any post-deploy tasks (if needed).
