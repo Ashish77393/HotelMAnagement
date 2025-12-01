@@ -1,0 +1,129 @@
+/* Shared site styles used by Home, About, Services templates */
+:root {
+  --brand: #b30000;
+  --accent: #ff6b6b;
+  --muted: #6c757d;
+  --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+/* Hero */
+.hero-landing {
+  min-height: 72vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background-size: cover;
+  background-position: center;
+}
+.hero-card {
+  background: rgba(255, 255, 255, 0.92);
+  padding: 2.2rem;
+  border-radius: 14px;
+  box-shadow: var(--card-shadow);
+}
+.hero-title {
+  color: var(--brand);
+  font-weight: 800;
+  letter-spacing: 0.6px;
+}
+
+/* Login form */
+.login-card .form-label {
+  font-weight: 600;
+  color: var(--brand);
+}
+
+/* Services */
+.service-card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.16);
+}
+.service-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+.service-title {
+  font-weight: 700;
+  color: var(--brand);
+}
+.service-desc {
+  color: var(--muted);
+}
+
+/* team */
+.team-photo {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Responsive spacing */
+@media (min-width: 1200px) {
+  .hero-card {
+    padding: 3rem;
+  }
+}
+
+/* Small utility */
+.muted {
+  color: var(--muted);
+}
+
+/* Header / Navbar styles */
+.topbar {
+  background: #0b0b0b;
+  color: #fff;
+  padding: 6px 0;
+  font-size: 14px;
+}
+.topbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.topbar a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+}
+
+.main-nav {
+  background: linear-gradient(90deg, var(--brand), #ff6b6b);
+  color: #fff;
+}
+.main-nav .navbar-brand {
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #fff;
+}
+.main-nav .nav-link {
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 600;
+}
+.main-nav .nav-link:hover {
+  color: rgba(255, 255, 255, 1);
+}
+.main-nav .cta-btn {
+  background: #fff;
+  color: var(--brand);
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .topbar .container {
+    flex-direction: column;
+    gap: 6px;
+  }
+}

@@ -1,82 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Luxury Stay</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, sans-serif;
-      }
-      header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px;
-        background: black;
-        color: white;
-        margin-bottom: 10px;
-      }
-      .logo {
-        font-size: 24px;
-        font-weight: bold;
-      }
-      nav ul {
-        list-style: none;
-        display: flex;
-      }
-      nav ul li {
-        margin: 0 15px;
-      }
-      nav ul li a {
-        text-decoration: none;
-        color: white;
-        font-size: 18px;
-        font-weight: bolder;
-      }
-      .book-now {
-        background: #e74c3c;
-        padding: 10px;
-        border-radius: 5px;
-        text-decoration: none;
-        font-weight: bold;
-        color: white;
-      }
-      .book-now:hover {
-        background: #8f95e4;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <div class="logo">Luxury Stay</div>
-      <nav>
-        <ul>
-          <li><a href="/Dashboard">Home</a></li>
-          <li><a href="#">Rooms</a></li>
-          <li><a href="/Services">Services</a></li>
-          <li><a href="/Contact">Contact</a></li>
-        </ul>
-      </nav>
-      <div style="display:flex; align-items:center; gap:1rem;">
+<header class="topbar">
+  <div class="container">
+    <div>Call us: <a href="tel:+123456789">+1 (234) 567-89</a></div>
+    <div>Open 24/7 — We're here to help</div>
+  </div>
+</header>
+
+<nav class="navbar main-nav navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="/Dashboard">Luxury Stay</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mainNav"
+      aria-controls="mainNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon" style="filter: invert(1)"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="/Dashboard">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Rooms</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="/Services">Services</a>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="/About">About</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="/Contact">Contact</a>
+        </li>
+      </ul>
+
+      <div class="d-flex align-items-center gap-2">
         {% if request.session.user_name %}
-        <div style="color:#fff; font-weight:bold;">Hello, {{ request.session.user_name }}</div>
-        <a href="/logout/" class="book-now" style="background:#6c757d;">Logout</a>
+        <div class="text-white me-2">
+          Hello, <strong>{{ request.session.user_name }}</strong>
+        </div>
+        <a class="btn btn-sm cta-btn" href="/logout/">Logout</a>
         {% else %}
-        <a href="/" class="book-now">Login</a>
-        <a href="/signup/" class="book-now" style="background:#2dce89;">Sign Up</a>
+        <a class="btn btn-sm text-white" href="/">Login</a>
+        <a class="btn btn-sm cta-btn" href="/signup/">Sign Up</a>
         {% endif %}
+        <a
+          class="btn btn-sm ms-2"
+          href="#BookNow"
+          style="
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            border-radius: 8px;
+            padding: 0.45rem 0.8rem;
+          "
+          >Book Now</a
+        >
       </div>
-    </header>
-    {% if messages %}
-    <div style="max-width: 1100px; margin: 10px auto; padding: 0 20px;">
-      {% for message in messages %}
-        <div style="padding:10px; border-radius:6px; margin-bottom:8px; background:#f0f8ff; color:#003580; font-weight:600;">{{ message }}</div>
-      {% endfor %}
     </div>
-    {% endif %}
-  </body>
-</html>
+  </div>
+</nav>
+{% if messages %}
+<div style="max-width: 1100px; margin: 10px auto; padding: 0 20px">
+  {% for message in messages %}
+  <div class="alert alert-info" role="alert">{{ message }}</div>
+  {% endfor %}
+</div>
+{% endif %}

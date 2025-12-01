@@ -2,123 +2,137 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Luxury Stay</title>
-    <style>
-      body {
-        /* background-image: url("https://images.squarespace-cdn.com/content/v1/57125c2c2b8dde54a34b537f/1598519777811-FO5ABYWP3EDDIL14MNMT/ke17ZwdGBToddI8pDm48kNvT88LknE-K9M4pGNO0Iqd7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1USOFn4xF8vTWDNAUBm5ducQhX-V3oVjSmr829Rco4W2Uo49ZdOtO_QXox0_W7i2zEA/stella_island_luxury_resort_spa_crete_itravelling_4.jpg");
-        background-repeat: no-repeat;
-        background-size: cover; */
-        background-color: black;
-      }
-    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact — Luxury Stay</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-
-    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <script
       src="https://kit.fontawesome.com/a076d05399.js"
       crossorigin="anonymous"
     ></script>
+    <style>
+      .contact-hero {
+        padding: 4rem 0;
+        background: linear-gradient(
+          160deg,
+          rgba(179, 0, 0, 0.08),
+          rgba(255, 255, 255, 0.02)
+        );
+        text-align: center;
+      }
+      .contact-card {
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .info-item i {
+        font-size: 1.15rem;
+        color: var(--brand);
+        margin-right: 10px;
+      }
+    </style>
   </head>
   <body class="bg-light">
+    <div class="contact-hero">
+      <div class="container">
+        <h1 class="display-5 fw-bold">Get in touch</h1>
+        <p class="lead muted">
+          Have a question or need help booking? Our team is here to help — reach
+          out and we'll respond promptly.
+        </p>
+      </div>
+    </div>
+
     <div class="container mt-5">
-      <div class="row">
-        <!-- Left Side: Contact Details -->
-        {%for c in personal%}
-        <div class="col-md-5 bg-light p-4 rounded shadow">
-          <h2 class="text-primary">{{c.header}}</h2>
-          <p>{{c.mess}}</p>
-
-          <div class="d-flex align-items-center mb-3">
-            <i class="fas fa-map-marker-alt fa-lg text-primary me-2"></i>
-            <p class="mb-0"><strong>{{c.name}}</strong></p>
-          </div>
-
-          <div class="d-flex align-items-center mb-3">
-            <i class="fas fa-envelope fa-lg text-primary me-2"></i>
-            <p class="mb-0">
-              Email:
-              <a href="mailto:{{c.email}}" class="text-decoration-none"
-                >{{c.email}}</a
-              >
-            </p>
-          </div>
-
-          <div class="d-flex align-items-center mb-3">
-            <i class="fas fa-phone fa-lg text-primary me-2"></i>
-            <p class="mb-0">
-              Phone:
-              <a href="tel:{{c.phone}}" class="text-decoration-none"
-                >{{c.phone}}</a
-              >
-            </p>
-          </div>
-
-          <!-- Social Media Links -->
-        </div>
-        {%endfor%}
-        <!-- Right Side: Contact Form -->
-        <div class="col-md-6 ms-auto">
-          <form
-            method="post"
-            action="/Contact/"
-            class="p-4 border rounded shadow bg-white"
-          >
-            {% csrf_token %}
-            <h2 class="text-primary">Send Us a Message</h2>
-
-            {% if messages %} {% for msg in messages %}
-            <div
-              style="
-                background: #d4edda;
-                padding: 10px;
-                margin-bottom: 10px;
-                color: #155724;
-                border: 1px solid #c3e6cb;
-              "
-            >
-              {{ msg }}
+      <div class="row g-4">
+        {% for c in personal %}
+        <div class="col-lg-4">
+          <div class="p-4 bg-white rounded-4 contact-card shadow-sm">
+            <h3 class="fw-bold">{{ c.header }}</h3>
+            <p class="muted">{{ c.mess }}</p>
+            <div class="mt-3">
+              <div class="info-item mb-2">
+                <i class="fas fa-map-marker-alt"></i>
+                <strong>{{ c.name }}</strong>
+              </div>
+              <div class="info-item mb-2">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:{{ c.email }}" class="text-decoration-none"
+                  >{{ c.email }}</a
+                >
+              </div>
+              <div class="info-item mb-2">
+                <i class="fas fa-phone"></i>
+                <a href="tel:{{ c.phone }}" class="text-decoration-none"
+                  >{{ c.phone }}</a
+                >
+              </div>
             </div>
+            <div class="mt-4">
+              <a href="/BookNow/" class="btn btn-lg btn-primary w-100"
+                >Book a Room</a
+              >
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+        <div class="col-lg-8">
+          <div class="p-4 bg-white rounded-4 shadow-sm">
+            <h3 class="fw-bold mb-3">Send us a message</h3>
+            {% if messages %} {% for msg in messages %}
+            <div class="alert alert-success">{{ msg }}</div>
             {% endfor %} {% endif %}
 
-            <div class="mb-3">
-              <label for="name" class="form-label">Your Name</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                class="form-control"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">Your Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                class="form-control"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="message" class="form-label">Your Message</label>
-              <textarea
-                id="message"
-                name="message"
-                class="form-control"
-                rows="5"
-                required
-              ></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary w-100">
-              Send Message
-            </button>
-          </form>
+            <form
+              method="post"
+              action="/Contact/"
+              class="row g-3 align-items-stretch"
+            >
+              {% csrf_token %}
+              <div class="col-md-6">
+                <label class="form-label">Name</label>
+                <input class="form-control" name="name" required />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="col-12">
+                <label class="form-label">Message</label>
+                <textarea
+                  name="message"
+                  rows="5"
+                  class="form-control"
+                  required
+                ></textarea>
+              </div>
+              <div class="col-12 text-end">
+                <button class="btn btn-outline-primary px-4">
+                  Send Message
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="mt-4 rounded overflow-hidden shadow-sm">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.3943367950286!2d70.78218097496947!3d22.273630279671578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be2d4bb97d57e15%3A0x562d8bfc965e28a7!2sRajkot!5e0!3m2!1sen!2sin!4v1644429309843!5m2!1sen!2sin"
+              width="100%"
+              height="300"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+            ></iframe>
+          </div>
         </div>
       </div>
 
