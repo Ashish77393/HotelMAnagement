@@ -98,101 +98,59 @@
     <hr />
 
     <style>
-      .container-fluid {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        gap: 20px;
-        padding: 20px;
-        background-color: black;
-      }
+      /* Hotel cards: clean, responsive grid using Bootstrap + small helper styles */
+      .hotels-section { padding: 40px 20px; background: linear-gradient(180deg,#0f1724 0%, #0b1220 100%); }
+      .hotels-section .section-header h2 { color: #fff; font-weight: 700; margin-bottom: 6px; }
+      .hotels-section .section-header p { color: #cbd5e1; margin-bottom: 20px; }
 
-      .developer-card {
-        width: 300px; /* Adjust based on your design */
-        display: flex;
-        flex-direction: column;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease-in-out;
-      }
+      .hotel-card { border: 0; overflow: hidden; border-radius: 12px; transition: transform .25s ease, box-shadow .25s ease; }
+      .hotel-card:hover { transform: translateY(-6px); box-shadow: 0 10px 30px rgba(2,6,23,0.6); }
+      .hotel-card .card-img-top { height: 220px; object-fit: cover; display: block; }
 
-      .developer-card:hover {
-        transform: translateY(-5px);
-      }
+      .hotel-meta { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px; }
+      .hotel-meta .price { background: linear-gradient(90deg,#0ea5e9,#7c3aed); color:#fff; padding:6px 10px; border-radius:8px; font-weight:700; }
+      .hotel-meta .rating { font-weight:700; color:#f6d365; }
 
-      .developer-card img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        border-radius: 10px;
-      }
+      .hotel-desc { color: #5b6772; font-size: 14px; min-height:52px; }
+      .hotel-actions { display:flex; gap:8px; margin-top:10px; }
+      .hotel-actions .btn { flex:1; }
 
-      .card-body {
-        flex-grow: 1;
-        padding: 15px;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .card-title {
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 5px;
-      }
-
-      .card-price {
-        font-size: 16px;
-        font-weight: bold;
-        color: black;
-      }
-
-      .card-rating {
-        font-size: 18px;
-        color: black;
-        font-weight: bold;
-        margin-left: 10px;
-      }
-
-      .card-facility {
-        font-size: 18px;
-        color: #555;
-        margin-top: 10px;
-      }
-
-      .bottom {
-        margin-top: auto;
-        text-align: center;
-        padding: 10px;
-      }
-
-      .bottom .btn {
-        width: 100%;
-        font-size: 16px;
-        font-weight: bold;
-      }
+      @media (max-width:576px){ .hotel-card .card-img-top{ height:160px; } }
     </style>
 
-    <div class="container-fluid">
+    <div class="hotels-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <h2>Top Picks for You</h2>
+          <p>Best-value hotels and guest favorites — handpicked from our listings.</p>
+        </div>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
       {% for h in hotel %}
-      <div class="card developer-card">
-        <img src="/media/{{ h.image }}" alt="Hotel Image" />
-        <div class="card-body">
-          <p class="card-title">{{ h.header }}</p>
-          <div>
-            <span class="card-price">₹ {{ h.price }}</span>
-            <span class="card-rating">⭐ {{ h.rating }}/5</span>
+          <div class="col">
+            <div class="card hotel-card h-100 bg-white">
+              <div class="position-relative">
+                <img src="/media/{{ h.image }}" class="card-img-top" alt="{{ h.header }}" />
+                <div class="position-absolute" style="right:10px;top:10px;">
+                  <span class="badge bg-dark">⭐ {{ h.rating }}/5</span>
+                </div>
+                <div class="position-absolute" style="left:10px;top:10px;">
+                  <span class="badge price">₹ {{ h.price }}</span>
+                </div>
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title" title="{{ h.header }}">{{ h.header|truncatechars:48 }}</h5>
+                <div class="hotel-desc">{{ h.des|truncatechars:120 }}</div>
+                <div class="hotel-actions mt-auto">
+                  <a href="/BookNow" class="btn btn-primary btn-sm">Book Now</a>
+                  <a href="/" class="btn btn-outline-secondary btn-sm">View</a>
+                </div>
+              </div>
+            </div>
           </div>
-          <p class="card-facility">{{ h.des }}</p>
-          <div class="bottom">
-            <a href="/BookNow" style="text-decoration: none">
-              <button class="btn btn-dark">Book Now</button>
-            </a>
-          </div>
+      {% endfor %}
         </div>
       </div>
-      {% endfor %}
     </div>
     <!-- Suggested hotels and footer included via templates -->
   </body>
