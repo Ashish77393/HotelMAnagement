@@ -89,8 +89,11 @@ Alternative (if your Vercel plan doesn't support Docker builds)
 If your Vercel account can't use Docker builds, there's an alternative: Vercel's Python serverless builder requires a single ASGI/Starlette/FastAPI `app` entrypoint. For convenience this repository now contains `app.py` which exposes Django's ASGI application as `app` so Vercel can deploy the Django app in a serverless environment.
 
 Important notes about the serverless approach:
-- Serverless functions may have cold-starts, execution time limits, and may not be suitable for long-running background tasks like migrations — so you should run migrations outside the function (CI or a separate command).
-- Static files should be collected and stored in a persistent object store (S3/GCS) or served from Vercel's static hosting. This repo includes `staticfiles/` handling but you must ensure `python manage.py collectstatic` runs in your deployment process and the assets are served appropriately.
+
+ - Serverless functions have execution-time limits and may not be suitable for long-running background tasks. You should run migrations via CI or a remote shell; do not rely on the function lifecycle to run migrations.
+ - Many database drivers are C-extensions and may fail to build in Vercel's serverless environment (for example `mysqlclient`); to prevent pip failures this repository uses the pure-Python `PyMySQL` driver (it's already present in `requirements.txt`) and the project includes `pymysql.install_as_MySQLdb()` in `ProjectAsh/__init__.py` so Django can use PyMySQL as a MySQL driver on serverless platforms.
+ - If you prefer a compiled `mysqlclient` C-extension you can choose Docker builds instead — the Dockerfile we added installs `default-libmysqlclient-dev` so mysqlclient can be compiled inside the container.
+ - Static files should be collected and stored in a persistent object store (S3/GCS) or served from Vercel's static hosting. Ensure `python manage.py collectstatic` is run during build and static files are available to the runtime.
 
 If you prefer this serverless approach, Vercel will use `app.py` automatically if the project is set to the default Python builder (no Dockerfile). Make sure `app.py` is present at the repo root and set environment variables in Vercel. You can also explicitly add a `build` step if needed.
 

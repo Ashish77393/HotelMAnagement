@@ -5,11 +5,12 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-# Install system deps required for psycopg2
+# Install system deps required for psycopg2 and optional mysqlclient build
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     libpq-dev \
     gcc \
+    default-libmysqlclient-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Install pip dependencies
