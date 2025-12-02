@@ -74,7 +74,7 @@ ROOT_URLCONF = 'ProjectAsh.urls'
 TEMPLATES = [
     {
          'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],   # <-- IMPORTANT
+        'DIRS': ['templates'],   # <-- IMPORTANT
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
