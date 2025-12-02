@@ -28,7 +28,13 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-local-dev-key')
 DEBUG = os.environ.get('DEBUG', 'True').lower() in ('true', '1', 'yes')
 
 # Allow hosts coming from env (comma-separated) or sensible defaults for development
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'hotelmanagement-4-o2yw.onrender.com,localhost,127.0.0.1').split(',')
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '.onrender.com',
+    'hotelmanagement-3-4tr6.onrender.com',
+]
+
 
 # Application definition
 
