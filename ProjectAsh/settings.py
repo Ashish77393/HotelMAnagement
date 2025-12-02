@@ -70,11 +70,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'ProjectAsh.urls'
-
 TEMPLATES = [
     {
          'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],   # <-- IMPORTANT
+        'DIRS': [BASE_DIR / 'templates'],   # <-- IMPORTANT
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
